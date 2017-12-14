@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>城市联动混合版本</title>
+		<script type="text/javascript" src="js/jquery-3.2.0.js"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				var city = document.getElementById("city");
+				/* 将city转成jQuery对象 */
+				$(city).change(function(){
+					var $val = $("#city option:selected").val();
+					/* 给对应的城市赋值相关的区域 */
+					switch($val){
+						case 'bj':
+							/* 使用$("#area")[0].innerHTML或者$("#area").get()0.innerHTML */
+							$("#area")[0].innerHTML="<option>昌平区</option>"
+											+"<option>朝阳区</option>"
+											+"<option>海淀区</option>";
+							break;
+						case 'tj':
+							$("#area")[0].innerHTML="<option>南开区</option>"
+											+"<option>和平区</option>"
+											+"<option>河西区</option>";
+							break;
+						case 'sh':
+							$("#area")[0].innerHTML="<option>闵行区</option>"
+											+"<option>浦东区</option>"
+											+"<option>虹桥区</option>";
+							break;
+					}				
+				});
+			};
+		
+		</script>
+		
+	</head>
+	<body>
+		<select id="city">
+			<option value="bj">北京</option>
+			<option value="tj">天津</option>
+			<option value="sh">上海</option>
+		</select>
+		<select id="area">
+			<option>昌平区</option>
+			<option>朝阳区</option>
+			<option>海淀去</option>
+		</select>
+	</body>
+</html>

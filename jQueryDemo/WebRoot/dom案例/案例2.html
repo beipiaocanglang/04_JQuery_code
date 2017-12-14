@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script type="text/javascript" src="../js/jquery-3.2.0.js"></script>
+		<title>添加用户</title>
+	</head>
+	<body>
+		<center>
+			<br><br>
+			添加用户:<br><br>
+			姓名: <input type="text" name="name" id="name"/>&nbsp;&nbsp;
+			email: <input type="text" name="email" id="email" />&nbsp;&nbsp;
+			电话: <input type="text" name="tel" id="tel" /><br><br>
+			<button id="addUser">提交</button>
+			<br><br>
+			<hr>
+			<br><br>
+			<table id="usertable" border="1" cellpadding="5" cellspacing=0>
+				<tbody>
+					<tr>
+						<th>姓名</th>
+						<th>email</th>
+						<th>电话</th>
+						<th>&nbsp;</th>
+					</tr>
+					<tr>
+						<td>Tom</td>
+						<td>tom@tom.com</td>
+						<td>5000</td>
+						<td><a href="javaScript.void(0);">Delete</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</center>
+	</body>
+	
+	<script type="text/javascript">
+		
+		$("#addUser").click(function(){
+			var $name = $("#name").val();
+			var $email = $("#email").val();
+			var $tel = $("#tel").val();
+			
+			var $tr = $("<tr/>");
+			
+			var $td1 = $("<td/>");
+			$td1.text($name);
+			
+			var $td2 = $("<td/>");
+			$td2.text($email);
+			
+			var $td3 = $("<td/>");
+			$td3.text($tel);
+			
+			var $td4 = $("<td/>");
+			var $a = $("<a/>");
+			$a.attr("href","deleteEmp?id="+$name);
+			$a.text("Delete");
+			
+			$a.click(function(){
+				var res = confirm("您确定要删除【"+$name+"】吗？");
+				if(res){
+					$(this).parent().parent().remove();
+					return false;
+				}
+			});
+			
+			$td4.append($a);
+			
+			$tr.append($td1).append($td2).append($td3).append($td4);
+			
+			$("#usertable tbody").append($tr);
+		});
+	</script>
+</html>
